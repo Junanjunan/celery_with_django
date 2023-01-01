@@ -13,6 +13,12 @@ app.conf.update(timezone = 'Asia/Seoul')
 
 app.config_from_object(settings, namespace='CELERY')
 
+
+# Celery Beat Setting
+app.conf.beat_schedule = {
+
+}
+
 app.autodiscover_tasks()
 
 @app.task(bind=True)
