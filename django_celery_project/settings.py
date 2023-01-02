@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from .local_settings import DJANGO_SECRET
+from .local_settings import DJANGO_SECRET, LOCAL_EMAIL_HOST_PASSWORD, LOCAL_EMAIL_HOST_USER
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,3 +140,13 @@ CELERY_RESULT_BACKEND = 'django-db'
 
 # CELERY BEAT
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+
+# SMTP Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = LOCAL_EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = LOCAL_EMAIL_HOST_PASSWORD
+DEFAULT_FOM_EMAIL = f'Celery {EMAIL_HOST_USER}'
